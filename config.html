@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hundred Game - Grid Configuration</title>
+    <link rel="stylesheet" href="hundred-game.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .config-panel {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .config-panel h2 {
+            margin-top: 0;
+            color: #333;
+            font-size: 20px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .config-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .config-option {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .config-option:hover {
+            border-color: #667eea;
+            background: #f8f0fe;
+        }
+
+        .config-option input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        .config-option label {
+            cursor: pointer;
+            display: block;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .config-option small {
+            display: block;
+            color: #999;
+            margin-top: 8px;
+            font-size: 12px;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .game-wrapper {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-box {
+            background: #e8f0fe;
+            border-left: 4px solid #4285f4;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .info-box strong {
+            color: #4285f4;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+
+        .theory-panel {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .theory-panel h2 {
+            color: #333;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .grid-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .grid-card {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+
+        .grid-card strong {
+            display: block;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .grid-card span {
+            color: #667eea;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .grid-card small {
+            display: block;
+            color: #999;
+            margin-top: 8px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚙️ Hundred Game - Grid Configuration</h1>
+
+        <div class="config-panel">
+            <h2>Choose Grid Size</h2>
+
+            <div class="info-box">
+                <strong>💡 Info:</strong> You can choose between different sizes. Each grid has its own characteristics and difficulty level.
+            </div>
+
+            <form id="configForm">
+                <div class="config-group">
+                    <div class="config-option">
+                        <input type="radio" id="grid5x5" name="gridSize" value="5">
+                        <label for="grid5x5">
+                            5×5
+                            <small>25 cells</small>
+                        </label>
+                    </div>
+
+                    <div class="config-option">
+                        <input type="radio" id="grid8x8" name="gridSize" value="8">
+                        <label for="grid8x8">
+                            8×8
+                            <small>64 cells</small>
+                        </label>
+                    </div>
+
+                    <div class="config-option">
+                        <input type="radio" id="grid10x10" name="gridSize" value="10" checked>
+                        <label for="grid10x10">
+                            10×10 (Default)
+                            <small>100 cells</small>
+                        </label>
+                    </div>
+
+                    <div class="config-option">
+                        <input type="radio" id="grid15x15" name="gridSize" value="15">
+                        <label for="grid15x15">
+                            15×15
+                            <small>225 cells</small>
+                        </label>
+                    </div>
+
+                    <div class="config-option">
+                        <input type="radio" id="grid20x20" name="gridSize" value="20">
+                        <label for="grid20x20">
+                            20×20
+                            <small>400 cells</small>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="button" class="start-btn" onclick="startGame()">Start Game</button>
+            </form>
+        </div>
+
+        <div id="gameContainer" style="display: none;">
+            <div class="game-wrapper">
+                <div id="game"></div>
+            </div>
+        </div>
+
+        <div class="theory-panel">
+            <h2>🧮 Mathematical Theory</h2>
+
+            <p>
+                You are absolutely right! This puzzle is related to the <strong>"Knight's Tour"</strong> problem in chess 
+                and has a fascinating mathematical structure based on <strong>recursive and fractal patterns</strong>.
+            </p>
+
+            <h3>How Solutions Work</h3>
+            <p>
+                Solutions for even grids (5×5, 10×10, 20×20, etc.) follow a pattern:
+            </p>
+            <ul>
+                <li><strong>5×5:</strong> Has solutions based on recursive patterns</li>
+                <li><strong>10×10:</strong> Can be constructed by combining/transforming 4 blocks from 5×5</li>
+                <li><strong>20×20:</strong> Can be constructed by combining/transforming 4 blocks from 10×10</li>
+                <li><strong>N×N (even):</strong> Theoretically has solutions if N ≥ 5 and is even</li>
+            </ul>
+
+            <h3>Recursive Pattern (Scaling)</h3>
+            <p>
+                If you have a valid solution for an N×N grid, you can:
+            </p>
+            <ol>
+                <li>Create 4 copies of the solution</li>
+                <li>Scale each copy to cover a quadrant of (2N)×(2N)</li>
+                <li>Connect the quadrants with appropriate moves</li>
+            </ol>
+
+            <h3>Available Grids and Solvability</h3>
+            <div class="grid-info">
+                <div class="grid-card">
+                    <strong>5×5</strong>
+                    <span>25</span>
+                    <small>✅ Known solutions exist</small>
+                </div>
+                <div class="grid-card">
+                    <strong>8×8</strong>
+                    <span>64</span>
+                    <small>✅ Has solutions</small>
+                </div>
+                <div class="grid-card">
+                    <strong>10×10</strong>
+                    <span>100</span>
+                    <small>✅ Has solutions (scales from 5×5)</small>
+                </div>
+                <div class="grid-card">
+                    <strong>15×15</strong>
+                    <span>225</span>
+                    <small>⚠️ Complex, probably has solutions</small>
+                </div>
+                <div class="grid-card">
+                    <strong>20×20</strong>
+                    <span>400</span>
+                    <small>✅ Has solutions (scales from 10×10)</small>
+                </div>
+            </div>
+
+            <h3>What About Odd Numbers?</h3>
+            <p>
+                Odd grids (3×3, 7×7, 9×9, etc.) are <strong>more problematic</strong>:
+            </p>
+            <ul>
+                <li><strong>3×3 (9 cells):</strong> Probably has no solution</li>
+                <li><strong>7×7 (49 cells):</strong> No proven solution</li>
+                <li><strong>9×9 (81 cells):</strong> Unknown (to be researched)</li>
+            </ul>
+
+            <h3>References and Further Reading</h3>
+            <p>
+                This type of problem is related to:
+            </p>
+            <ul>
+                <li><strong>Knight's Tour:</strong> Chess knight problem</li>
+                <li><strong>Hamiltonian Path:</strong> Path that visits every node exactly once</li>
+                <li><strong>Fractal tiling:</strong> How patterns repeat in upper levels</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="hundred-game.js"></script>
+    <script>
+        let currentGame = null;
+
+        function startGame() {
+            const gridSize = parseInt(document.querySelector('input[name="gridSize"]:checked').value);
+            
+            // Hide the config panel and show the game
+            document.querySelector('.config-panel').style.display = 'none';
+            document.getElementById('gameContainer').style.display = 'block';
+            
+            // Destroy the previous game if it exists
+            if (currentGame) {
+                document.getElementById('game').innerHTML = '';
+            }
+            
+            // Create the new game with the selected size
+            currentGame = new HundredGame('game', { gridSize: gridSize });
+            
+            // Add a button to go back to configuration
+            const backBtn = document.createElement('button');
+            backBtn.textContent = '← Back to Configuration';
+            backBtn.className = 'reset-btn';
+            backBtn.style.marginTop = '20px';
+            backBtn.onclick = () => {
+                document.querySelector('.config-panel').style.display = 'block';
+                document.getElementById('gameContainer').style.display = 'none';
+                document.getElementById('game').innerHTML = '';
+                currentGame = null;
+            };
+            document.getElementById('game').parentElement.appendChild(backBtn);
+        }
+
+        console.log('🎮 Hundred Game Configurator loaded!');
+        console.log('Select a grid size and start playing.');
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "name": "hundred-game",
+  "version": "1.0.0",
+  "description": "Un gioco di logica su griglia 10x10 con regole di movimento specifiche. Vanillla JavaScript, CSS e HTML - zero dipendenze.",
+  "main": "hundred-game.js",
+  "module": "hundred-game-es6.js",
+  "files": [
+    "hundred-game.js",
+    "hundred-game-es6.js",
+    "hundred-game.css",
+    "README.md"
+  ],
+  "keywords": [
+    "game",
+    "puzzle",
+    "grid",
+    "javascript",
+    "vanilla",
+    "component"
+  ],
+  "author": "",
+  "license": "MIT",
+  "homepage": "#",
+  "repository": {
+    "type": "git",
+    "url": "#"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

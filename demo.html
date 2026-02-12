@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hundred Game - Advanced Demo</title>
+    <link rel="stylesheet" href="hundred-game.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .game-wrapper {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .game-title h2 {
+            margin: 0;
+            color: #333;
+            font-size: 20px;
+        }
+
+        .game-title p {
+            margin: 5px 0 0 0;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .info-panel {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .info-panel strong {
+            color: #333;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .controls button {
+            flex: 1;
+            min-width: 100px;
+            padding: 8px 16px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .controls button:hover {
+            background: #764ba2;
+        }
+
+        .stats-panel {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .stats-panel h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .stat-item {
+            padding: 10px;
+            margin: 5px 0;
+            background: #f8f9fa;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .stat-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .stat-value {
+            color: #667eea;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Hundred Game - Demo</h1>
+
+        <div class="games-grid">
+            <!-- Match 1: Normal Game -->
+            <div class="game-wrapper">
+                <div class="game-title">
+                    <h2>Match 1</h2>
+                    <p>Click on a cell to start</p>
+                </div>
+                <div id="game1"></div>
+                <div class="info-panel">
+                    <strong>Rules:</strong><br>
+                    • Horizontal/Vertical: skip 2 cells<br>
+                    • Diagonal: skip 1 cell<br>
+                    • Fill all 100 cells to win
+                </div>
+            </div>
+
+            <!-- Match 2: Game with auto-start -->
+            <div class="game-wrapper">
+                <div class="game-title">
+                    <h2>Match 2</h2>
+                    <p>Started from center (5, 5)</p>
+                </div>
+                <div id="game2"></div>
+                <div class="controls">
+                    <button onclick="resetGame2()">Restart</button>
+                    <button onclick="showStats2()">Statistics</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics panel -->
+        <div class="stats-panel">
+            <h2>📊 How to Use the Game</h2>
+            
+            <h3>1. HTML Standalone</h3>
+            <code style="display: block; background: #f5f5f5; padding: 12px; border-radius: 6px; overflow-x: auto;">
+&lt;link rel="stylesheet" href="hundred-game.css"&gt;<br>
+&lt;div id="game"&gt;&lt;/div&gt;<br>
+&lt;script src="hundred-game.js"&gt;&lt;/script&gt;<br>
+&lt;script&gt;const game = new HundredGame('game');&lt;/script&gt;
+            </code>
+
+            <h3 style="margin-top: 20px;">2. As React Component</h3>
+            <code style="display: block; background: #f5f5f5; padding: 12px; border-radius: 6px; overflow-x: auto;">
+import { useEffect, useRef } from 'react';<br>
+import HundredGame from './hundred-game';<br>
+<br>
+export default function GameComponent() {<br>
+&nbsp;&nbsp;const containerRef = useRef(null);<br>
+&nbsp;&nbsp;useEffect(() => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;new HundredGame(containerRef.current.id);<br>
+&nbsp;&nbsp;}, []);<br>
+&nbsp;&nbsp;return &lt;div id="game" ref={containerRef}&gt;&lt;/div&gt;;<br>
+}
+            </code>
+
+            <h3 style="margin-top: 20px;">3. Programmatic Control</h3>
+            <code style="display: block; background: #f5f5f5; padding: 12px; border-radius: 6px; overflow-x: auto; font-size: 12px;">
+const game = new HundredGame('game');<br>
+game.startGame(0, 0);           // Start from (0, 0)<br>
+game.playMove(3, 0);             // Make a move<br>
+console.log(game.getState());    // Read state<br>
+game.reset();                    // Reset
+            </code>
+
+            <div style="margin-top: 20px; padding: 15px; background: #e8f0fe; border-radius: 6px; border-left: 4px solid #4285f4;">
+                <strong>💡 Tip:</strong> Open the browser console (F12) to control the game programmatically. 
+                The global variables <code style="background: #f5f5f5; padding: 2px 6px; border-radius: 3px;">game1</code> and 
+                <code style="background: #f5f5f5; padding: 2px 6px; border-radius: 3px;">game2</code> are available for debugging.
+            </div>
+        </div>
+    </div>
+
+    <script src="hundred-game.js"></script>
+    <script>
+        // Create two game instances
+        const game1 = new HundredGame('game1');
+        const game2 = new HundredGame('game2');
+
+        // Start game 2 from the center
+        game2.startGame(5, 5);
+
+        // Control functions
+        function resetGame2() {
+            game2.reset();
+        }
+
+        function showStats2() {
+            const state = game2.getState();
+            alert(`
+Match 2 Statistics:
+- Numbers placed: ${state.currentNumber - 1}/100
+- Position: [${state.currentPosition?.row}, ${state.currentPosition?.col}]
+- Game Over: ${state.gameOver ? 'Yes' : 'No'}
+- Won: ${state.won ? 'Yes' : 'No'}
+            `);
+        }
+
+        // Make games global for debugging
+        window.game1 = game1;
+        window.game2 = game2;
+
+        console.log('🎮 Hundred Game loaded!');
+        console.log('Use window.game1 and window.game2 to control the games from the console');
+    </script>
+</body>
+</html>
