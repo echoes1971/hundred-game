@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hundred Game - Grid Configuration</title>
-    <link rel="stylesheet" href="hundred-game.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="src/css/hundred-game.css">
+    <meta name="theme-color" content="#2c3e50">
     <style>
         body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -322,7 +324,12 @@
         </div>
     </div>
 
-    <script src="hundred-game.js"></script>
+    <script src="src/js/hundred-game.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(() => {});
+        }
+    </script>
     <script>
         let currentGame = null;
 

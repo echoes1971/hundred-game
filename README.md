@@ -11,7 +11,7 @@
 
 A logic puzzle game based on a configurable grid (5×5, 10×10, 20×20, etc.) where you need to place numbers following specific movement rules.
 
-**🎯 No dependencies | 📦 Pure JavaScript, HTML, CSS | 🎨 Responsive Design | 📱 Mobile-Friendly**
+**🎯 No dependencies | 📦 Pure JavaScript, HTML, CSS | 🎨 Responsive Design | 📱 Mobile-Friendly | 💾 PWA Installable**
 
 **[Live Demo](./index.html)** • **[Configuration Demo](./config.html)** • **[Advanced Examples](./demo.html)**
 
@@ -30,6 +30,7 @@ A logic puzzle game based on a configurable grid (5×5, 10×10, 20×20, etc.) wh
 
 - ⚡ **Zero Dependencies**: Pure Vanilla JavaScript
 - 📱 **Mobile Friendly**: Fully responsive design
+- 💾 **PWA Ready**: Install as standalone app, offline support
 - 🎮 **Configurable Grid**: 5×5 → 20×20 and beyond
 - 🧩 **Reusable Component**: Import and use anywhere
 - 🎨 **Modern UI**: Beautiful gradient design
@@ -39,17 +40,64 @@ A logic puzzle game based on a configurable grid (5×5, 10×10, 20×20, etc.) wh
 
 ## 🚀 Getting Started
 
+### Installation
+
+#### Option 1: NPM (For React/Vue/Svelte projects)
+
+```bash
+npm install @echoes1971/hundred-game
+```
+
+Then import:
+
+```javascript
+import HundredGame from '@echoes1971/hundred-game';
+import '@echoes1971/hundred-game/css';
+
+const game = new HundredGame('container-id', { gridSize: 10 });
+```
+
+#### Option 2: Direct Download
+
+Download files from GitHub and include:
+
+```html
+<link rel="stylesheet" href="src/css/hundred-game.css">
+<script src="src/js/hundred-game.js"></script>
+```
+
+#### Option 3: Local Development (Without Publishing to NPM)
+
+Use `npm link` for local development or install from GitHub:
+
+```bash
+# Method 1: npm link (for active development)
+cd /path/to/hundred-game
+npm link
+
+cd /path/to/your-project
+npm link @echoes1971/hundred-game
+
+# Method 2: Install from GitHub
+npm install github:echoes1971/hundred-game
+
+# Method 3: Install from local path
+npm install /path/to/hundred-game
+```
+
+**📖 See [LOCAL_USAGE.md](./LOCAL_USAGE.md) for complete guide on using without npmjs.com**
+
 ### Quick Start (30 seconds)
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="hundred-game.css">
+    <link rel="stylesheet" href="src/css/hundred-game.css">
 </head>
 <body>
     <div id="game"></div>
-    <script src="hundred-game.js"></script>
+    <script src="src/js/hundred-game.js"></script>
     <script>
         new HundredGame('game');  // That's it!
     </script>
@@ -73,33 +121,90 @@ A logic puzzle game based on a configurable grid (5×5, 10×10, 20×20, etc.) wh
 
 ## 📦 Usage
 
-### As a Standalone Component
+### React
+
+```jsx
+import { useEffect, useRef } from 'react';
+import HundredGame from '@echoes1971/hundred-game';
+import '@echoes1971/hundred-game/css';
+
+function GameComponent() {
+  const containerRef = useRef(null);
+  
+  useEffect(() => {
+    if (containerRef.current) {
+      const game = new HundredGame('game-container', { gridSize: 10 });
+      return () => game.reset();
+    }
+  }, []);
+  
+  return <div id="game-container" ref={containerRef} />;
+}
+```
+
+### Vue 3
+
+```vue
+<template>
+  <div id="game-container"></div>
+</template>
+
+<script setup>
+import { onMounted } from 'vue';
+import HundredGame from '@echoes1971/hundred-game';
+import '@echoes1971/hundred-game/css';
+
+onMounted(() => {
+  const game = new HundredGame('game-container', { gridSize: 10 });
+});
+</script>
+```
+
+### Svelte
+
+```svelte
+<script>
+  import { onMount } from 'svelte';
+  import HundredGame from '@echoes1971/hundred-game';
+  import '@echoes1971/hundred-game/css';
+  
+  onMount(() => {
+    const game = new HundredGame('game-container', { gridSize: 10 });
+    return () => game.reset();
+  });
+</script>
+
+<div id="game-container"></div>
+```
+
+### Vanilla JavaScript / HTML
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="hundred-game.css">
+    <link rel="stylesheet" href="src/css/hundred-game.css">
 </head>
 <body>
     <div id="game"></div>
     
-    <script src="hundred-game.js"></script>
+    <script src="src/js/hundred-game.js"></script>
     <script>
         // Create a 10×10 game (default)
         const game = new HundredGame('game');
         
         // Or configure the size
-        const game = new HundredGame('game', { gridSize: 5 });  // 5×5
+        const game5 = new HundredGame('game', { gridSize: 5 });  // 5×5
     </script>
 </body>
 </html>
 ```
 
-### With Modern JavaScript (ES6 modules)
+### ES6 Module Import
 
 ```javascript
-import HundredGame from './hundred-game-es6.js';
+import HundredGame from '@echoes1971/hundred-game';
+// or from file: './hundred-game-es6.js';
 
 const game = new HundredGame('game-container', { gridSize: 10 });
 ```

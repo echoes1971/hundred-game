@@ -1,31 +1,53 @@
 {
-  "name": "hundred-game",
+  "name": "@echoes1971/hundred-game",
   "version": "1.0.0",
-  "description": "Un gioco di logica su griglia 10x10 con regole di movimento specifiche. Vanillla JavaScript, CSS e HTML - zero dipendenze.",
-  "main": "hundred-game.js",
-  "module": "hundred-game-es6.js",
+  "description": "A configurable logic puzzle game. Place numbers 1-100 on a grid following movement rules: horizontal/vertical skip 2, diagonal skip 1. Zero dependencies, PWA ready.",
+  "main": "src/js/hundred-game.js",
+  "module": "src/js/hundred-game-es6.js",
+  "types": "src/js/hundred-game.d.ts",
+  "exports": {
+    ".": {
+      "import": "./src/js/hundred-game-es6.js",
+      "require": "./src/js/hundred-game.js"
+    },
+    "./css": "./src/css/hundred-game.css"
+  },
   "files": [
-    "hundred-game.js",
-    "hundred-game-es6.js",
-    "hundred-game.css",
-    "README.md"
+    "src/",
+    "README.md",
+    "LICENSE"
   ],
+  "scripts": {
+    "test": "echo \"No tests yet\" && exit 0",
+    "prepublishOnly": "echo \"Ready to publish\""
+  },
   "keywords": [
     "game",
     "puzzle",
+    "logic-game",
     "grid",
     "javascript",
-    "vanilla",
-    "component"
+    "vanilla-js",
+    "component",
+    "react",
+    "vue",
+    "svelte",
+    "pwa",
+    "zero-dependencies",
+    "browser"
   ],
-  "author": "",
+  "author": "echoes1971",
   "license": "MIT",
-  "homepage": "#",
+  "homepage": "https://github.com/echoes1971/hundred-game#readme",
   "repository": {
     "type": "git",
-    "url": "#"
+    "url": "git+https://github.com/echoes1971/hundred-game.git"
+  },
+  "bugs": {
+    "url": "https://github.com/echoes1971/hundred-game/issues"
   },
   "engines": {
     "node": ">=12.0.0"
-  }
+  },
+  "sideEffects": false
 }

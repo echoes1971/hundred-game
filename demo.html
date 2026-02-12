@@ -1,10 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+});  );      })        return caches.match('/index.html');        // Return offline page if available      .catch(() => {      })        });          return response;            });              // Silently handle caching errors            .catch(() => {            })              cache.put(event.request, responseToCache);            .then((cache) => {          caches.open(CACHE_NAME)          const responseToCache = response.clone();          // Clone and cache successful responses          }            return response;          if (!response || response.status !== 200 || response.type === 'error') {          // Don't cache non-successful responses        return fetch(event.request).then((response) => {        // Otherwise fetch from network        }          return response;        if (response) {        // Return cached response if available      .then((response) => {    caches.match(event.request)  event.respondWith(  }    return;  if (event.request.method !== 'GET') {  // Skip non-GET requestsself.addEventListener('fetch', (event) => { */ * Fetch event - serve from cache, fallback to network/**});  );    })      );        })          }            return caches.delete(cacheName);          if (cacheName !== CACHE_NAME) {        cacheNames.map((cacheName) => {      return Promise.all(    caches.keys().then((cacheNames) => {  event.waitUntil(self.addEventListener('activate', (event) => { */ * Activate event - clean up old caches/**});  );      })        // Silently handle errors during installation      .catch(() => {      })        return cache.addAll(URLS_TO_CACHE);      .then((cache) => {    caches.open(CACHE_NAME)  event.waitUntil(self.addEventListener('install', (event) => { */ * Install event - cache essential files/**];  '/src/css/hundred-game.css'  '/src/js/hundred-game.js',  '/manifest.json',  '/demo.html',  '/config.html',  '/index.html',  '/',const URLS_TO_CACHE = [const CACHE_NAME = 'hundred-game-v1'; */    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hundred Game - Advanced Demo</title>
-    <link rel="stylesheet" href="hundred-game.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="src/css/hundred-game.css">
+    <meta name="theme-color" content="#2c3e50">
     <style>
         body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -204,7 +295,12 @@ game.reset();                    // Reset
         </div>
     </div>
 
-    <script src="hundred-game.js"></script>
+    <script src="src/js/hundred-game.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(() => {});
+        }
+    </script>
     <script>
         // Create two game instances
         const game1 = new HundredGame('game1');
