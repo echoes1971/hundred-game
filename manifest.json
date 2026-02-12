@@ -1,0 +1,62 @@
+{
+  "name": "Hundred Game - Logic Puzzle",
+  "short_name": "Hundred",
+  "description": "A configurable logic puzzle game. Place numbers 1-100 on a grid following movement rules: horizontal/vertical skip 2, diagonal skip 1.",
+  "start_url": "/hundred-game/",
+  "scope": "/hundred-game/",
+  "display": "standalone",
+  "theme_color": "#2c3e50",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%232c3e50'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='120' font-weight='bold' fill='%23ecf0f1' font-family='Arial'>100</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%232c3e50'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='320' font-weight='bold' fill='%23ecf0f1' font-family='Arial'>100</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["games", "puzzle"],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect width='540' height='720' fill='%23f8f9fa'/><text x='270' y='360' text-anchor='middle' font-size='48' fill='%232c3e50'>Hundred Game</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "New Game (10x10)",
+      "short_name": "New Game",
+      "description": "Start a new 10x10 game",
+      "url": "/hundred-game/index.html",
+      "icons": [
+        {
+          "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%233498db'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='100' fill='%23fff'>▶</text></svg>",
+          "sizes": "192x192",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Configure Grid",
+      "short_name": "Configure",
+      "description": "Configure game grid size",
+      "url": "/hundred-game/config.html",
+      "icons": [
+        {
+          "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%27e74c3c'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='100' fill='%23fff'>⚙</text></svg>",
+          "sizes": "192x192",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ]
+}
